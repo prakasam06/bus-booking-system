@@ -6,8 +6,7 @@ const { logger } = require('./middlewares/logger');
 const { errorHandler } = require('./middlewares/errorHandler');
 const { corsOptionsDelegate } = require('./middlewares/cors');
 const { notFound } = require('./middlewares/notFound');
-const { testRouter } = require('./routes/testRoutes');
-const { pagesRouter } = require('./routes/pagesRoutes');
+
 const { userRouter } = require('./routes/userRoutes');
 
 const app = express();
@@ -41,8 +40,6 @@ app.use(express.json()); //to handle json
 app.use(express.static(path.join(__dirname, 'public'))); //to serve static files
 
 //routes
-app.use('/',testRouter);
-app.use('/pages',pagesRouter);
 app.use('/api/v1/users', userRouter);
 
 //error handlers

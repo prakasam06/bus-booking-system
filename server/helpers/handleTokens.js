@@ -13,7 +13,6 @@ const handleTokens = async function(email){
         process.env.REFRESH_TOKEN_SECRET,
         { expiresIn: '1d' }
     )
-    console.log(REFRESH_TOKEN,ACCESS_TOKEN)
     try{
         await User.findOneAndUpdate(
             { email: email }, 
@@ -21,7 +20,6 @@ const handleTokens = async function(email){
             { new: true } 
           )
     
-        console.log('everything works fine dood ')
         tokens = {"refreshToken":REFRESH_TOKEN,"accessToken":ACCESS_TOKEN}
         return tokens
 

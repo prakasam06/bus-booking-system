@@ -39,3 +39,14 @@
 // app.get('/*',(req,res)=>{
 //     res.status(404).sendFile(path.join(__dirname, 'views' , '404.html'));
 // })
+
+// pagesRouter.get('^/$|page(.html)?|newpage(.html)?|new',(req,res)=>{
+//     res.sendFile(path.join(__dirname, '..', 'views', 'page2.html'));
+// })
+
+// pagesRouter.get('/hello/:id',(req,res,next)=>{
+//     console.log('trying')
+//     next();
+// },(req,res)=>{
+//     res.send(req.params.id);
+// })

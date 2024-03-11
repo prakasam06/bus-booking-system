@@ -43,8 +43,6 @@ const signIn = async(req,res) =>{
         }else{
             console.log(user.email)
             const tokens = await handleTokens(user.email)
-            console.log("works good till now")
-            console.log(tokens,"token")
             res.cookie('jwt',tokens.refreshToken,{httpOnly:true, maxAge:24*60*60*1000})
             return res.status(200).json({"accessToken":tokens.accessToken})
         }          
@@ -89,7 +87,6 @@ const signOut = async(req,res) =>{
         ) 
 
     res.clearCookie('jwt',{httpOnly:true});
-    console.log(cookies.jwt)
     res.sendStatus(204);
 }
 
