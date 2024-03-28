@@ -1,13 +1,14 @@
 const express = require('express');
 const path = require('path');
 const cors = require('cors');
+const cookieParser = require('cookie-parser');
 
 const { logger } = require('./middlewares/logger');
 const { errorHandler } = require('./middlewares/errorHandler');
 const { corsOptionsDelegate } = require('./middlewares/cors');
 const { notFound } = require('./middlewares/notFound');
-
 const { userRouter } = require('./routes/userRoutes');
+const {Notificationrouter} = require('./routes/notificationRoutes')
 
 const app = express();
 const port = 8000;
@@ -17,7 +18,6 @@ var dotenv = require('dotenv').config({path: path.join(__dirname, '.env')})
 const mongoose = require('mongoose');
 const MONGO_URL = process.env.MONGO_URL;
 
-const cookieParser = require('cookie-parser');
 
 mongoose.connect(MONGO_URL).then(()=>{
     console.log('Connected to database');
@@ -26,7 +26,7 @@ mongoose.connect(MONGO_URL).then(()=>{
     })
 }).catch((error)=>{
     console.log(error,'error occured while running server/connectiong to databse');
-}) 
+})
 
 //middlewares
 //custom middleware logger
@@ -41,6 +41,7 @@ app.use(express.static(path.join(__dirname, 'public'))); //to serve static files
 
 //routes
 app.use('/api/v1/users', userRouter);
+app.use('/api/v1/notify', Notificationrouter);
 
 //error handlers
 app.all('*',notFound); //to handle 404 error - it is an route handler

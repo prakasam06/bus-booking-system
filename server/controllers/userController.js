@@ -41,8 +41,7 @@ const signIn = async(req,res) =>{
         if(!isMatch){
             return res.status(400).send({"mesage":"invalid credentials"})
         }else{
-            console.log(user.email)
-            const tokens = await handleTokens(user.email)
+            const tokens = await handleTokens(user.id)
             res.cookie('jwt',tokens.refreshToken,{httpOnly:true, maxAge:24*60*60*1000})
             return res.status(200).json({"accessToken":tokens.accessToken})
         }          
@@ -60,9 +59,9 @@ const auth = async(req,res) =>{
             process.env.REFRESH_TOKEN_SECRET,
             (err,decoded)=>{
                 if(err) return res.status(400).send({"error":err})
-                if(user.email !== decoded.email) return res(403).send({"message":"not a valid ref token"})
+                if(user.id !== decoded.id) return res(403).send({"message":"not a valid ref token"})
                 const ACCESS_TOKEN = jwt.sign(
-                    {'email':user.email},
+                    {'id':user.id},
                     process.env.ACCESS_TOKEN_SECRET,
                     { expiresIn: '30s' }
                  )
@@ -89,7 +88,6 @@ const signOut = async(req,res) =>{
     res.clearCookie('jwt',{httpOnly:true});
     res.sendStatus(204);
 }
-
 
 const pagebro = (req,res) =>{
     return res.status(200).json({"message":"hello vrooooooooooo"})
