@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
 const Seat = require("./seatModel");
-const Trip = require("./tripModel");
 
 const ticketSchema = new mongoose.Schema({
   passengerName: {
@@ -21,11 +20,6 @@ const ticketSchema = new mongoose.Schema({
     ref: "Seat",
     required: [true, "seat is required"],
   },
-  trip: {
-    type: mongoose.Schema.ObjectId,
-    ref: "Trip",
-    required: [true, "trip is required"],
-  },
 });
 
-module.exports = mongoose.Model("Ticket", ticketSchema);
+module.exports = mongoose.model("Ticket", ticketSchema);

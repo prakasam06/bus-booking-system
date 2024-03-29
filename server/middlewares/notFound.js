@@ -2,7 +2,7 @@ const path = require('path');
 
 const notFound = (req, res, next) => {
     res.status(404);
-    console.log("hi");
+    console.log("not found");
     if(req.accepts('html')){
         res.sendFile(path.join(__dirname, '..', 'views' , '404.html'));
     }else if(req.accepts('json')){

@@ -1,11 +1,11 @@
 const mongoose = require("mongoose");
-const Bus = require("./busModel");
+const Trip = require("./tripModel");
 
 const seatSchema = new mongoose.Schema({
-  bus: {
+  trip: {
     type: mongoose.Schema.ObjectId,
-    ref: "Bus",
-    required: [true, "bus is required"],
+    ref: "Trip",
+    required: [true, "trip is required"],
   },
   class: {
     type: String,
@@ -23,4 +23,4 @@ const seatSchema = new mongoose.Schema({
   },
 });
 
-module.exports = mongoose.Model("Seat", seatSchema);
+module.exports = mongoose.model("Seat", seatSchema);
