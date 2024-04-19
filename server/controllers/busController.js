@@ -77,7 +77,7 @@ const editBus = async (req, res) => {
 const busDetails = async (req, res) => {
   try {
     const busId = req.params.busId;
-    const bus = await Bus.findOne({ _id: busId });
+    const bus = await Bus.findOne({ Bus: busId });
     if (!bus)
       return res.status(400).send({ message: "bus not found", status: 400 });
     return res.status(200).send({ status: 200, details: bus });
@@ -86,4 +86,4 @@ const busDetails = async (req, res) => {
   }
 };
 
-module.exports = { addAdmin, addBus, editBus, busDetails };
+module.exports = { addBus, editBus, busDetails };

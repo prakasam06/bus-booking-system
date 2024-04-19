@@ -1,4 +1,4 @@
-var allowlist = ['http://localhost:8000'];
+var allowlist = ['http://localhost'];
 var corsOptionsDelegate = function (req, callback) {
     var corsOptions;
     var requestOrigin = req.header('Origin');

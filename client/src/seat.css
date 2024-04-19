@@ -1,0 +1,104 @@
+.seat-chart-container {
+    width: 50%;
+    margin: auto;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5); /* Optional: Add a shadow for a 3D effect */
+}
+
+
+
+.toolbar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem; /* Space between elements */
+    padding: 1rem; /* Padding around the toolbar */
+    border: 2px solid #ccc; /* Optional: Add a border for visual separation */
+    border-radius: 0.5rem; /* Optional: Rounded corners for aesthetics */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: Add a shadow for a 3D effect */
+    width: 50%; /* Adjust the width as needed */
+}
+
+.toolbar input[type="text"] {
+    width: 100%;
+    padding: 0.5rem;
+    border: 2px solid #ccc;
+    border-radius: 0.5rem;
+}
+
+.toolbar button {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 0.5rem;
+    background-color: #007bff; /* Blue background */
+    color: white; /* White text */
+    cursor: pointer;
+}
+
+.seat-grid-container {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    width: 100%;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.seat {
+    margin: 0.25rem;
+    padding: 0.5rem;
+    border: 2px solid #ccc;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 0.875rem;
+    transition: color 0.3s, background-color 0.3s;
+    cursor: pointer;
+}
+
+.seat.bg-light-red {
+    background-color: #fbbfca;
+}
+
+.seat.bg-light-gray {
+    background-color: #d3d3d3;
+}
+
+.seat.bg-dark-gray {
+    color: #f0f0f0;
+    background-color: #c81313;
+    cursor: not-allowed;
+}
+
+.seat .seat-index,
+.seat .seat-status,
+.seat .seat-class,
+.seat .seat-price {
+    margin: 0.125rem 0;
+}
+
+.seat .seat-index {
+    font-weight: bold;
+}
+
+.seat .seat-status {
+    color: #666;
+}
+
+.seat .seat-class {
+    color: #777;
+}
+
+.seat .seat-price {
+    color: #007bff;
+    font-weight: bold;
+}
