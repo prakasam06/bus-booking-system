@@ -44,6 +44,7 @@ const JWTAuthProvider = ({ children }) => {
   useEffect(() => {
     if (location.pathname === "/register") {
       setIsLoading(false);
+      alert("hi from register");
       return;
     }
     me()
