@@ -44,7 +44,10 @@ app.use(
     credentials: true,
   })
 );
-app.options(["localhost", "127.0.0.1"], cors());
+// Respond to preflight requests for all routes
+app.options('*', cors());
+
+// app.options(["localhost", "127.0.0.1"], cors());
 app.use(logger);
 
 //built-in middlewares
