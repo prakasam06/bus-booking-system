@@ -17,7 +17,7 @@ const { checkAdmin } = require("../middlewares/checkAdmin");
 
 AdminRouter.post("/addAdmin", verifyJWT, checkAdmin, addAdmin);
 
-AdminRouter.post("/addbus", verifyJWT, checkAdmin, addBus);
+AdminRouter.post("/addbus",  addBus);
 AdminRouter.post("/editBus/:busId", verifyJWT, checkAdmin, editBus);
 AdminRouter.get("/busDetails/:busId", verifyJWT, busDetails);
 

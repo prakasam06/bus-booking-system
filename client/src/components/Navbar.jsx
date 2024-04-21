@@ -1,30 +1,40 @@
 import { useState } from "react";
 import "../index.css";
-
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../contexts/JWTAuthContext";
 const Navbar = () => {
+  const navigate = useNavigate();
+  const { isAuthenticated,logOut } = useAuth();
+
+  const signOutHandler = async () => {
+    await logOut();
+  }
   return (
     <>
-      <div class="navbar bg-base-100">
-        <div class="flex-1">
-          <a class="btn btn-ghost text-xl">Booking System</a>
+      <div className="navbar bg-base-100">
+        <div className="flex-1">
+          <a className="btn btn-ghost text-xl" href="/">
+            Booking System
+          </a>
         </div>
-        <div class="flex-none">
-          <div class="dropdown dropdown-end">
-            <div tabindex="0" role="button" class="btn btn-ghost btn-circle">
+        <div className="flex-none">
+          <div className="dropdown dropdown-end">
+            <div tabIndex="0" role="button" className="btn btn-ghost btn-circle">
             </div>
             <div
-              tabindex="0"
-              class="mt-3 z-[1] card card-compact dropdown-content w-52 bg-base-100 shadow"
+              tabIndex="0"
+              className="mt-3 z-[1] card card-compact dropdown-content w-52 bg-base-100 shadow"
             >
             </div>
           </div>
-          <div class="dropdown dropdown-end">
+          {isAuthenticated ? (
+            <div className="dropdown dropdown-end">
             <div
-              tabindex="0"
+              tabIndex="0"
               role="button"
-              class="btn btn-ghost btn-circle avatar"
+              className="btn btn-ghost btn-circle avatar"
             >
-              <div class="w-10 rounded-full">
+              <div className="w-10 rounded-full">
                 <img
                   alt="Tailwind CSS Navbar component"
                   src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"
@@ -32,23 +42,23 @@ const Navbar = () => {
               </div>
             </div>
             <ul
-              tabindex="0"
-              class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+              tabIndex="0"
+              className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
             >
               <li>
-                <a class="justify-between">
+                <a className="justify-between" href="/profile">
                   Profile
-                  <span class="badge">New</span>
                 </a>
               </li>
               <li>
-                <a>Settings</a>
-              </li>
-              <li>
-                <a>Logout</a>
+                <a onClick={signOutHandler}>Logout</a>
               </li>
             </ul>
           </div>
+          ) : (
+            <a href="/login">Login</a>
+          )}
+          
         </div>
       </div>
     </>

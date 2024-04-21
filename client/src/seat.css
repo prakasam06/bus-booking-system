@@ -1,13 +1,23 @@
+.parent-container{
+    width: 90%;
+    margin: auto;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: between;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+}
+
 .seat-chart-container {
-    width: 50%;
+    width: 40%;
     margin: auto;
     padding: 1rem;
     display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5); /* Optional: Add a shadow for a 3D effect */
 }
-
-
 
 .toolbar {
     display: flex;
@@ -29,7 +39,7 @@
     border-radius: 0.5rem;
 }
 
-.toolbar button {
+button {
     padding: 0.5rem 1rem;
     border: none;
     border-radius: 0.5rem;
@@ -50,19 +60,21 @@
 }
 
 .seat {
-    margin: 0.25rem;
-    padding: 0.5rem;
-    border: 2px solid #ccc;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    border-radius: 0.5rem;
+    margin: 0.1rem; /* Reduced margin for less space between seats and more compact appearance */
+    padding: 0.2rem; /* Reduced padding to decrease the overall size */
+    border: 1px solid #ccc; /* Thinner border for a more delicate look */
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1); /* Reduced shadow size for subtlety */
+    border-radius: 0.25rem; /* Smaller radius for less pronounced curves */
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     text-align: center;
-    font-size: 0.875rem;
+    font-size: 0.75rem; /* Smaller font size to match the reduced scale */
     transition: color 0.3s, background-color 0.3s;
     cursor: pointer;
+    width: auto; /* Set a fixed width to control size */
+    height: auto; /* Set a fixed height to control size */
 }
 
 .seat.bg-light-red {

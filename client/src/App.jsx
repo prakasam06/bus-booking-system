@@ -1,16 +1,15 @@
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
-import { useState } from "react";
 import "./index.css";
-import Navbar from "./components/Navbar";
+import routes from "../routes";
+import { Routes, Route } from "react-router-dom";
 
 function App() {
-  const [count, setCount] = useState(0);
 
   return (
-    <>
-      <Navbar />
-    </>
+    <Routes>
+      {routes.map((route) => (
+        <Route path={route.path} element={route.element} key={route.path} />
+      ))}
+    </Routes>
   );
 }
 

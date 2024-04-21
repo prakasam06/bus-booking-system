@@ -6,10 +6,6 @@ const ticketSchema = new mongoose.Schema({
     type: String,
     required: [true, "passenger name is required for tickets"],
   },
-  email: {
-    type: String,
-    required: [true, "passenger email is required"],
-  },
   passengerAge: {
     type: Number,
     min: [1, "age should be greater than 1"],

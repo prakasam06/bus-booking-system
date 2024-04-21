@@ -11,15 +11,18 @@ const validateUser = async (id) => {
 const verifyJWT = async (req, res, next) => {
   const authHeader = req.headers["authorization"];
   if (!authHeader) return res.status(401).json({ message: "unauthorized" });
-  const token = authHeader.split(" ")[1];
-  jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, decoded) => {
+  console.log(authHeader,"authHeader");
+  const token =  authHeader.split(" ")[1];
+  console.log(token,"token");
+  jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, async(err, decoded) => {
     if (err)
-      return res.status(403).send({ message: "error occured", error: err });
-    req.user = decoded.id;
+      return res.status(403).send({ status:403,message: "error occured", error: err });
     if (!validateUser(decoded.id))
       return res
         .status(403)
-        .send({ message: "invalid token - user not found" });
+        .send({ status:403,message: "invalid token - user not found" });
+    const user = await User.findById(decoded.id);
+    req.user = user;
     next();
   });
 };

@@ -6,7 +6,7 @@ const User = require("./userModel");
 const bookingSchema = new mongoose.Schema({
   bookedAt: {
     type: Date,
-    default: date.now(),
+    default: Date.now(),
   },
   noOfSeats: {
     type: Number,
@@ -27,11 +27,14 @@ const bookingSchema = new mongoose.Schema({
     ref: "User",
     required: [true, "trip is required"],
   },
+  totalAmount: {
+    type: Number,
+  },
   tickets: [
     {
-      type: Schema.Types.ObjectId,
+      type: mongoose.Schema.Types.ObjectId,
       ref: "Ticket",
-      required: [true, "ticket is required"],
+      
     },
   ],
 });
