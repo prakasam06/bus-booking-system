@@ -55,7 +55,7 @@ const JWTAuthProvider = ({ children }) => {
         if (res.data.isRefreshTokenExpired || !res.data.isAuthenticated) {
           Navigate("/login");
         }
-        if(location.pathname === "/"){
+        if (location.pathname === "/") {
           Navigate("/");
         }
       })
@@ -72,16 +72,27 @@ const JWTAuthProvider = ({ children }) => {
       password: password,
     });
     console.log(res);
-    if (res.data.status === 200) {
-      setaccessToken(res.data.accessToken);
-      setaccessTokenExpired(false);
-      setIsAuthenticated(true);
-      setIsLoading(false);
-      setError("");
-      Navigate("/");
-    } else {
-      setIsLoading(false);
-      setError(res.data.error);
+    try {
+      if (res.data.status === 200) {
+        setaccessToken(res.data.accessToken);
+        setaccessTokenExpired(false);
+        setIsAuthenticated(true);
+        setIsLoading(false);
+        setError("");
+        Navigate("/");
+      }
+    } catch (err) {
+      console.log(err, "errror");
+      if (err.response && err.status === 400) {
+        console.log(err, "error res");
+        console.log(err.response.data.error, "error");
+        alert(err.response.data.error);
+      } else if (err.response && err.status === 404) {
+        console.log(err.response.data.error, "error");
+        alert(err.response.data.error);
+      } else {
+        alert("An unexpected error occurred. Please try again.");
+      }
     }
   };
 

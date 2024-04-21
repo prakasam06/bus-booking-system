@@ -60,6 +60,9 @@ app.use(express.static(path.join(__dirname, "public"))); //to serve static files
 // app.use("/", (req, res) => {
 //   res.sendFile(path.join(__dirname, "views", "index.html"));
 // }); 
+app.use("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "views", "index.html"));
+});
 app.use("/api/v1/", clientRouter);
 app.use("/api/v1/users", userRouter);
 app.use("/api/v1/admin", AdminRouter);
