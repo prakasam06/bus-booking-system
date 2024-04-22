@@ -55,20 +55,20 @@ mongoose
 //   }
 // });
 
-// app.use(cors(corsOptionsDelegate)); //to handle cross origin resource sharing error
+app.use(cors(corsOptionsDelegate)); //to handle cross origin resource sharing error
 // app.use(
 //   cors({
 //     origin: ["https://gleaming-gaufre-d09e24.netlify.app","http://localhost:5173"],
 //     credentials: true,
 //   })
 // );
-const corsOptions = {
-  origin: 'https://gleaming-gaufre-d09e24.netlify.app',
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  credentials: true,
-};
+// const corsOptions = {
+//   origin: 'https://gleaming-gaufre-d09e24.netlify.app',
+//   methods: ['GET', 'POST', 'PUT', 'DELETE'],
+//   credentials: true,
+// };
 
-app.use(cors(corsOptions));
+// app.use(cors(corsOptions));
 // app.options('*', cors({ origin: '*', credentials: true }));
 
 app.use(logger);
