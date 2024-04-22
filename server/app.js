@@ -62,7 +62,14 @@ mongoose
 //     credentials: true,
 //   })
 // );
-app.options('*', cors({ origin: '*', credentials: true }));
+app.use(
+  cors({
+    origin: "https://gleaming-gaufre-d09e24.netlify.app",
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true,
+  })
+);
+// app.options('*', cors({ origin: '*', credentials: true }));
 
 app.use(logger);
 //built-in middlewares

@@ -68,10 +68,12 @@ const signIn = async (req, res) => {
   } else {
     const tokens = await handleTokens(user.id);
     res.cookie("jwt", tokens.refreshToken, {
+      maxAge: 24 * 60 * 60 * 1000,
       httpOnly: true,
       secure: true,           
       SameSite: 'None',
-      maxAge: 24 * 60 * 60 * 1000,
+      withCredentials: true,
+      priority: 'High'
     });
     return res.status(200).json({
       status: 200,
