@@ -54,8 +54,20 @@ mongoose
 //     next();
 //   }
 // });
+const corsOptions = {
+  origin: 'https://gleaming-gaufre-d09e24.netlify.app',
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+};
 
-app.use(cors(corsOptionsDelegate)); //to handle cross origin resource sharing error
+// Apply CORS to all routes
+app.use(cors(corsOptions));
+
+// Handle OPTIONS method for preflight
+app.options('*', cors(corsOptions));
+
+// app.use(cors(corsOptionsDelegate)); //to handle cross origin resource sharing error
 // app.use(
 //   cors({
 //     origin: ["https://gleaming-gaufre-d09e24.netlify.app","http://localhost:5173"],
