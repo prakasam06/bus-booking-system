@@ -42,9 +42,9 @@ const JWTAuthProvider = ({ children }) => {
   }, [accessTokenExpired]);
 
   useEffect(() => {
+    console.log(location.pathname, "pathname");
     if (location.pathname === "/register") {
       setIsLoading(false);
-      alert("hi from register");
       return;
     }
     me()
