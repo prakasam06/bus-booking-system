@@ -13,7 +13,6 @@ const me = async () => {
     return res.data;
   }catch(error){
     console.log(error,"error");
-    alert("error occured");
   }
 };
 
