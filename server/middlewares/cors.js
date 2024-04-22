@@ -1,4 +1,4 @@
-var allowlist = ['http://localhost', 'https://booking-system-client-ten.vercel.app'];
+var allowlist = ['http://localhost', 'https://booking-system-client-ten.vercel.app','https://gleaming-gaufre-d09e24.netlify.app/login'];
 var corsOptionsDelegate = function (req, callback) {
     var corsOptions;
     var requestOrigin = req.header('Origin');
