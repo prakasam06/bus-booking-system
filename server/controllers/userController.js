@@ -69,7 +69,7 @@ const signIn = async (req, res) => {
     const tokens = await handleTokens(user.id);
     res.cookie("jwt", tokens.refreshToken, {
       maxAge: 24 * 60 * 60 * 1000,
-      httpOnly: true,
+      httpOnly: false,
       secure: true,           
       SameSite: 'None',
       withCredentials: true,
