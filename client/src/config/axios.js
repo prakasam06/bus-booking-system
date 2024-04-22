@@ -1,11 +1,13 @@
 import axios from "axios";
 
-
 const instance = axios.create({
-
   baseURL: "https://bus-booking-system.onrender.com/api/v1/",
   withCredentials: true,
   responseType: "json",
+  headers: {
+    "Content-Type": "application/json",
+    "Access-Control-Allow-Origin": "*",
+  },
 });
 
 export default instance;
