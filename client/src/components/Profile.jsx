@@ -52,9 +52,6 @@ const Profile = () => {
           const res = await axios.get("/getTickets/" + id, {
             headers: {
               Authorization: `Bearer ${token}`,
-              "Access-Control-Allow-Origin": "*",
-              "Content-Type": "application/json",
-              "Access-Control-Allow-Headers": "Content-Type",
             },
           });
           console.log(res.data.results, "imm results");

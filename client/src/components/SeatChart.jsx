@@ -126,9 +126,7 @@ const SeatChart = () => {
     try {
       const response = await axios.post("/confirm-tickets", body, {
         headers: {
-          'Content-Type': 'application/json',
           Authorization: `Bearer ${token}`,
-          "Access-Control-Allow-Origin": "*",
         }
       });
 
