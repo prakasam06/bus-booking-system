@@ -62,13 +62,13 @@ mongoose
 //     credentials: true,
 //   })
 // );
-app.use(
-  cors({
-    origin: "https://gleaming-gaufre-d09e24.netlify.app",
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    credentials: true,
-  })
-);
+const corsOptions = {
+  origin: 'https://gleaming-gaufre-d09e24.netlify.app',
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  credentials: true,
+};
+
+app.use(cors(corsOptions));
 // app.options('*', cors({ origin: '*', credentials: true }));
 
 app.use(logger);

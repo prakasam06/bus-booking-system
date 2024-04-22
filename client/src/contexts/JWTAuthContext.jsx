@@ -111,7 +111,7 @@ const JWTAuthProvider = ({ children }) => {
       setIsAuthenticated(false);
       setIsLoading(false);
       setError("");
-      Navigate("/");
+      Navigate("/login");
     } else {
       setIsLoading(false);
       setError(res.data.error);

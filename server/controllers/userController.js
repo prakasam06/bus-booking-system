@@ -77,7 +77,7 @@ const signIn = async (req, res) => {
     // });
     let options = {
       maxAge: 14 * 24 * hour,
-      httpOnly: false,
+      httpOnly: true,
       sameSite: 'None',
       secure: true,
       withCredentials: true,
