@@ -37,12 +37,24 @@ mongoose
 
 //middlewares
 //custom middleware logger
+const allowedOrigins = ['https://gleaming-gaufre-d09e24.netlify.app', 'http://localhost', 'https://booking-system-client-ten.vercel.app'];
+
 app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader("Access-Control-Allow-Methods", "POST, GET, PUT");
-  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
-  next();
+  const origin = req.headers.origin;
+  if (allowedOrigins.includes(origin)) {
+    res.setHeader('Access-Control-Allow-Origin', origin); // Set to the specific origin
+    res.setHeader('Access-Control-Allow-Credentials', 'true'); // Allow credentials
+  }
+
+  res.setHeader('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT, DELETE');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  if (req.method === "OPTIONS") {
+    res.sendStatus(200);
+  } else {
+    next();
+  }
 });
+
 // app.use(cors(corsOptionsDelegate)); //to handle cross origin resource sharing error
 // app.use(
 //   cors({
