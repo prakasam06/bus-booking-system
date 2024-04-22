@@ -1,10 +1,10 @@
-var allowlist = ['http://localhost'];
+var allowlist = ['http://localhost', 'https://booking-system-client-ten.vercel.app'];
 var corsOptionsDelegate = function (req, callback) {
     var corsOptions;
     var requestOrigin = req.header('Origin');
     console.log("Request origin:", requestOrigin)
     if (allowlist.indexOf(req.header('Origin')) !== -1 || !(req.header('Origin'))) {
-      corsOptions = { origin: true } 
+      corsOptions = { origin: true, credentials: true }
     } else {
       corsOptions = { origin: false }
       callback(new Error('not allowed by cors')) 

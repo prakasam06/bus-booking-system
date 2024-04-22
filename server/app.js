@@ -37,15 +37,14 @@ mongoose
 
 //middlewares
 //custom middleware logger
-// app.use(cors(corsOptionsDelegate)); //to handle cross origin resource sharing error
-app.use(
-  cors({
-    origin: true,
-    credentials: true,
-  })
-);
-// Respond to preflight requests for all routes
-app.options('*', cors());
+app.use(cors(corsOptionsDelegate)); //to handle cross origin resource sharing error
+// app.use(
+//   cors({
+//     origin: true,
+//     credentials: true,
+//   })
+// );
+// app.options('*', cors());
 
 // app.options(["localhost", "127.0.0.1"], cors());
 app.use(logger);
