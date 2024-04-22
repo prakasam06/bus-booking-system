@@ -35,53 +35,15 @@ mongoose
     );
   });
 
-//middlewares
-//custom middleware logger
-// const allowedOrigins = ['https://gleaming-gaufre-d09e24.netlify.app', 'http://localhost', 'https://booking-system-client-ten.vercel.app'];
-
-// app.use((req, res, next) => {
-//   const origin = req.headers.origin;
-//   if (allowedOrigins.includes(origin)) {
-//     res.setHeader('Access-Control-Allow-Origin', origin); // Set to the specific origin
-//     res.setHeader('Access-Control-Allow-Credentials', 'true'); // Allow credentials
-//   }
-
-//   res.setHeader('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT, DELETE');
-//   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-//   if (req.method === "OPTIONS") {
-//     res.sendStatus(200);
-//   } else {
-//     next();
-//   }
-// });
-const corsOptions = {
-  origin: 'https://gleaming-gaufre-d09e24.netlify.app',
-  credentials: true,
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  allowedHeaders: ['Content-Type', 'Authorization']
-};
-
-// Apply CORS to all routes
-app.use(cors(corsOptions));
-
-// Handle OPTIONS method for preflight
-app.options('*', cors(corsOptions));
-
-// app.use(cors(corsOptionsDelegate)); //to handle cross origin resource sharing error
-// app.use(
-//   cors({
-//     origin: ["https://gleaming-gaufre-d09e24.netlify.app","http://localhost:5173"],
-//     credentials: true,
-//   })
-// );
-// const corsOptions = {
-//   origin: 'https://gleaming-gaufre-d09e24.netlify.app',
-//   methods: ['GET', 'POST', 'PUT', 'DELETE'],
-//   credentials: true,
-// };
-
-// app.use(cors(corsOptions));
-// app.options('*', cors({ origin: '*', credentials: true }));
+app.use(
+  cors({
+    origin: [
+      "https://gleaming-gaufre-d09e24.netlify.app",
+      "http://localhost:5173",
+    ],
+    credentials: true,
+  })
+);
 
 app.use(logger);
 //built-in middlewares
@@ -93,7 +55,7 @@ app.use(express.static(path.join(__dirname, "public"))); //to serve static files
 //routes
 // app.use("/", (req, res) => {
 //   res.sendFile(path.join(__dirname, "views", "index.html"));
-// }); 
+// });
 app.get("/", (req, res) => {
   res.send({ message: "hello" });
 });

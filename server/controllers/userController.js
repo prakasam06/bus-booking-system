@@ -80,8 +80,6 @@ const signIn = async (req, res) => {
       httpOnly: true,
       sameSite: 'None',
       secure: true,
-      withCredentials: true,
-      priority: 'High'
   };
   res.cookie("jwt", tokens.refreshToken, options);
     return res.status(200).json({
