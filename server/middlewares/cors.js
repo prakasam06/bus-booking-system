@@ -1,15 +1,15 @@
-var allowlist = ['http://localhost', 'https://booking-system-client-ten.vercel.app','https://gleaming-gaufre-d09e24.netlify.app/login'];
+var allowlist = ['http://localhost', 'https://booking-system-client-ten.vercel.app', 'https://gleaming-gaufre-d09e24.netlify.app'];
 var corsOptionsDelegate = function (req, callback) {
     var corsOptions;
     var requestOrigin = req.header('Origin');
-    console.log("Request origin:", requestOrigin)
-    if (allowlist.indexOf(req.header('Origin')) !== -1 || !(req.header('Origin'))) {
-      corsOptions = { origin: true, credentials: true }
+    console.log("Request origin:", requestOrigin);
+    if (allowlist.includes(requestOrigin) || !requestOrigin) {
+        corsOptions = { origin: true, credentials: true };
+        callback(null, corsOptions);
     } else {
-      corsOptions = { origin: false }
-      callback(new Error('not allowed by cors')) 
+        corsOptions = { origin: false };
+        return callback(new Error('Not allowed by CORS')); 
     }
-    callback(null, corsOptions) 
-  }
+};
 
-module.exports = {corsOptionsDelegate};
+module.exports = { corsOptionsDelegate };
