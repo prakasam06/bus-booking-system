@@ -7,9 +7,14 @@ const JWTAuthContext = createContext();
 export const useAuth = () => useContext(JWTAuthContext);
 
 const me = async () => {
-  const res = await axios.get("users/me");
-  console.log(res.data);
-  return res.data;
+  try { 
+    const res = await axios.get("users/me");
+    console.log(res.data);
+    return res.data;
+  }catch(error){
+    console.log(error,"error");
+    alert("error occured");
+  }
 };
 
 const JWTAuthProvider = ({ children }) => {
@@ -45,6 +50,7 @@ const JWTAuthProvider = ({ children }) => {
     console.log(location.pathname, "pathname");
     if (location.pathname === "/register") {
       setIsLoading(false);
+      Navigate("/register");
       return;
     }
     me()
