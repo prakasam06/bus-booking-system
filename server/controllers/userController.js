@@ -75,6 +75,7 @@ const signIn = async (req, res) => {
     //   withCredentials: true,
     //   priority: 'High'
     // });
+    var hour = 3600000;
     let options = {
       maxAge: 14 * 24 * hour,
       httpOnly: true,
