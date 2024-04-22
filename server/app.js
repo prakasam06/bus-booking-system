@@ -60,7 +60,7 @@ app.use(
   cors({
     origin: "https://gleaming-gaufre-d09e24.netlify.app",
     credentials: true,
-  });
+  })
 );
 // app.options('*', cors());
 
