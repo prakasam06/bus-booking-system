@@ -67,14 +67,23 @@ const signIn = async (req, res) => {
       .send({ status: 400, message: "invalid credentials" });
   } else {
     const tokens = await handleTokens(user.id);
-    res.cookie("jwt", tokens.refreshToken, {
-      maxAge: 24 * 60 * 60 * 1000,
+    // res.cookie("jwt", tokens.refreshToken, {
+    //   maxAge: 24 * 60 * 60 * 1000,
+    //   httpOnly: false,
+    //   secure: true,           
+    //   SameSite: 'None',
+    //   withCredentials: true,
+    //   priority: 'High'
+    // });
+    let options = {
+      maxAge: 14 * 24 * hour,
       httpOnly: false,
-      secure: true,           
-      SameSite: 'None',
+      sameSite: 'None',
+      secure: true,
       withCredentials: true,
       priority: 'High'
-    });
+  };
+  res.cookie("jwt", tokens.refreshToken, options);
     return res.status(200).json({
       status: 200,
       message: "User logged in successfully",
