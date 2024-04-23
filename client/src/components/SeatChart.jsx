@@ -11,7 +11,8 @@ const SeatChart = () => {
   const [seatData, setSeatData] = useState([]);
   const [selectedSeats, setSelectedSeats] = useState([]);
   const [isConfirmed, setIsConfirmed] = useState(false);
-  const { accessToken,setaccessTokenExpired ,setaccessToken} = useAuth();
+  const { accessToken, setaccessTokenExpired, setaccessToken } = useAuth();
+  const [isLoading, setIsLoading] = useState(false);
 
   const { tripId } = useParams();
   const navigate = useNavigate();
@@ -80,7 +81,7 @@ const SeatChart = () => {
   useEffect(() => {
     console.log(selectedSeats, "im selectedSeats");
   }, [seatData]);
-  
+
   const handleChange = (id, type, value) => {
     console.log(id, type, value);
     const updatedSeats = selectedSeats.map((seat) => {
@@ -108,10 +109,10 @@ const SeatChart = () => {
       alert("Session has expired. Please log in again.");
       navigate("/login");
     }
-  }
-  const handleSubmit = async (event,token = accessToken) => {
+  };
+  const handleSubmit = async (event, token = accessToken) => {
     event.preventDefault();
-
+    setIsLoading(true);
     const body = {
       seats: selectedSeats,
       date: Date.now(),
@@ -127,7 +128,7 @@ const SeatChart = () => {
       const response = await axios.post("/confirm-tickets", body, {
         headers: {
           Authorization: `Bearer ${token}`,
-        }
+        },
       });
 
       console.log(response.data);
@@ -145,23 +146,35 @@ const SeatChart = () => {
         const newToken = await getNewToken();
         if (newToken) {
           setaccessToken(newToken);
-          handleSubmit(event,token=newToken);
-        }else{
+          handleSubmit(event, (token = newToken));
+        } else {
           alert("Some error occured");
           navigate("/login");
         }
       } else {
         alert("An unexpected error occurred. Please try again.");
       }
+    } finally {
+      setIsLoading(false);
     }
-};
+  };
 
   return seatData && seatData.length > 0 ? (
     <>
       {isConfirmed ? (
         selectedSeats.length > 0 ? (
-          <form className="form-control w-full max-w-2xl m-auto" onSubmit={()=>handleSubmit(event)}>
-            <center className="mb-3"><h3>Fill the Passengers Details to Continue</h3></center>
+          isLoading ? (
+            <div className="flex justify-center items-center h-screen">
+              <div className="text-lg font-medium">Loading...</div>
+            </div>
+          ) : (
+          <form
+            className="form-control w-full max-w-2xl m-auto"
+            onSubmit={() => handleSubmit(event)}
+          >
+            <center className="mb-3">
+              <h3>Fill the Passengers Details to Continue</h3>
+            </center>
             {selectedSeats.map((seat) => (
               <div
                 key={seat.seatId}
@@ -212,6 +225,7 @@ const SeatChart = () => {
               </button>
             </div>
           </form>
+        )
         ) : (
           <div className="flex flex-col justify-center items-center h-screen">
             <h2>No Seats Selected</h2>

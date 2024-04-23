@@ -6,10 +6,12 @@ import { useAuth } from "../contexts/JWTAuthContext";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   const { signIn } = useAuth();
   const handleSubmit = async () => {
     try {
+      setIsLoading(true);
       await signIn(email, password);
     } catch (err) {
       if (err.response && err.response.status === 400) {
@@ -22,10 +24,17 @@ const Login = () => {
       } else {
         alert("An unexpected error occurred. Please try again.");
       }
+    }finally{
+      setIsLoading(false);
     }
   };
   return (
     <>
+    {isLoading ? (
+      <div className="flex justify-center items-center h-screen">
+        <div className="text-lg font-medium">Loading...</div>
+      </div>
+    ) : (
       <div className="flex flex-col justify-around items-center h-screen bg-gray-100">
         <div className="flex flex-col justify-center items-center h-screen bg-gray-100">
           <h1 className="text-3xl font-bold">Login</h1>
@@ -70,6 +79,7 @@ const Login = () => {
           </p>
         </div>
       </div>
+    )}
     </>
   );
 };
