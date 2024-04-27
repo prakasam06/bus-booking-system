@@ -1,0 +1,2 @@
+PORT = 8000
+MONGO_URL = "mongodb+srv://mongo:fumrun-ruCzoj-tygpo9@cluster0.ufulu9n.mongodb.net/BOOKING_SYSTEM_DB"
