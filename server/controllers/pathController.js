@@ -49,20 +49,7 @@ const editPath = async (req, res) => {
       { $set: body },
       { new: true }
     );
-    consol+++
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    e.log(newPath.destination);
+    console.log(newPath.destination);
     return res
       .status(200)
       .send({ status: 200, message: "path edited sucessfully" });

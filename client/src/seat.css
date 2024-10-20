@@ -16,7 +16,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5); /* Optional: Add a shadow for a 3D effect */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5); 
 }
 
 .toolbar {
@@ -24,12 +24,12 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 1rem; /* Space between elements */
-    padding: 1rem; /* Padding around the toolbar */
-    border: 2px solid #ccc; /* Optional: Add a border for visual separation */
-    border-radius: 0.5rem; /* Optional: Rounded corners for aesthetics */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: Add a shadow for a 3D effect */
-    width: 50%; /* Adjust the width as needed */
+    gap: 1rem; 
+    padding: 1rem; 
+    border: 2px solid #ccc; 
+    border-radius: 0.5rem; 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+    width: 50%; 
 }
 
 .toolbar input[type="text"] {
@@ -43,14 +43,14 @@ button {
     padding: 0.5rem 1rem;
     border: none;
     border-radius: 0.5rem;
-    background-color: #007bff; /* Blue background */
-    color: white; /* White text */
+    background-color: #007bff; 
+    color: white;
     cursor: pointer;
 }
 
 .seat-grid-container {
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     justify-content: center;
     align-items: center;
     gap: 0.5rem;
@@ -60,21 +60,21 @@ button {
 }
 
 .seat {
-    margin: 0.1rem; /* Reduced margin for less space between seats and more compact appearance */
-    padding: 0.2rem; /* Reduced padding to decrease the overall size */
-    border: 1px solid #ccc; /* Thinner border for a more delicate look */
-    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1); /* Reduced shadow size for subtlety */
-    border-radius: 0.25rem; /* Smaller radius for less pronounced curves */
+    margin: 0.1rem; 
+    padding: 0.2rem; 
+    border: 1px solid #ccc; 
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1); 
+    border-radius: 0.25rem; 
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     text-align: center;
-    font-size: 0.75rem; /* Smaller font size to match the reduced scale */
+    font-size: 0.75rem; 
     transition: color 0.3s, background-color 0.3s;
     cursor: pointer;
-    width: auto; /* Set a fixed width to control size */
-    height: auto; /* Set a fixed height to control size */
+    width: auto; 
+    height: auto;
 }
 
 .seat.bg-light-red {
